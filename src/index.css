@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  overflow-x: hidden;
+}
+
+.login-page-wrapper {
+  background-image: url("./images/bg1.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.signup-page-wrapper {
+  background-image: url("./images/bg.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.icon-styling {
+  font-size: 24px;
+}
+
+.input-styling {
+  margin-bottom: 0.5rem; /* Reduce the margin-bottom for tighter spacing */
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #2e3032cc; /* Supernova 600 with slight transparency */
+  border: none; /* Remove default borders */
+  border-bottom: 2px solid #d1d2d5; /* supernova.200 */
+  transition: border-bottom 0.2s ease, background-color 0.2s ease,
+    color 0.2s ease;
+  color: #d1d2d5; /* supernova.200 */
+}
+
+.input-styling:focus {
+  outline: none; /* Remove the default outline */
+  border-bottom: 2px solid #f2f2f3; /* supernova.100, whitesmoke equivalent */
+  background-color: #2e3032; /* supernova.600 */
+  color: #f2f2f3; /* supernova.100 */
+}
+
+.submit {
+  display: inline-block;
+  transition: cubic-bezier(0.19, 1, 0.22, 1);
+  background: linear-gradient(to left, #f2f2f3 50%, #2e3032 50%) right; /* supernova.100 and 600 */
+  background-size: 200%;
+  transition: 0.5s ease-out;
+}
+
+.submit:hover {
+  background-position: left;
+  color: #f2f2f3; /* supernova.100 */
+}
+
+input {
+  transition: opacity 0.3s ease-in-out, color 0.3s ease-in-out;
+  opacity: 1; /* Start fully visible */
+}
+
+input.visible {
+  opacity: 0.8; /* Slightly lower opacity when the password is visible */
+  color: #f2f2f3; /* supernova.100 */
+}
+
+.input-wrap {
+  position: relative;
+}
+
+.input-wrap .input-styling {
+  width: 100%;
+}
+
+.input-wrap .floating-placeholder {
+  position: absolute;
+  pointer-events: none;
+  top: 38px;
+  left: 10px;
+  color: #f2f2f3; /* supernova.100 */
+  transition: 0.2s ease all;
+}
+
+.input-wrap input:focus ~ .floating-placeholder,
+.input-wrap input:not(:focus):valid ~ .floating-placeholder {
+  top: 24px;
+  left: 10px;
+  font-size: 12px;
+  opacity: 1;
+  font-weight: bold;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, -100%, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@keyframes fadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.title {
+  animation-duration: 0.25s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: both;
+}
+
+.form-wrapper {
+  animation-duration: 0.25s;
+  transition-timing-function: ease-in;
+  animation-fill-mode: both;
+}
+
+.title--fadeinup {
+  animation-name: fadeInUp;
+}
+
+.login-form-wrapper--fadeinright {
+  animation-name: fadeInRight;
+}
+
+.signup-form-wrapper--fadeinleft {
+  animation-name: fadeInLeft;
+}
+
+.toggle-password {
+  position: absolute;
+  right: 10px;
+  top: 48px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #f2f2f3; /* supernova.100 */
+  transition: 0.3s ease-in;
+}
