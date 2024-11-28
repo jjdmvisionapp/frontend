@@ -172,3 +172,59 @@ input.visible {
   color: #f2f2f3; /* supernova.100 */
   transition: 0.3s ease-in;
 }
+
+@media (min-width: 640px) {
+  .title-responsive {
+    font-size: 1.125rem; /* text-lg */
+  }
+}
+
+@media (min-width: 768px) {
+  .title-responsive {
+    font-size: 1.25rem; /* text-xl */
+  }
+}
+
+@media (min-width: 1024px) {
+  .title-responsive {
+    font-size: 1.5rem; /* text-2xl */
+  }
+}
+
+@media (min-width: 1280px) {
+  .title-responsive {
+    font-size: 1.5rem; /* text-2xl (same as large screens) */
+  }
+}
+
+@media (min-width: 768px) {
+  .subtitle-responsive {
+    font-size: 1.125rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .subtitle-responsive {
+    font-size: 1.25rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .subtitle-responsive {
+    font-size: 1.25rem;
+  }
+}
+
+progress {
+  border-radius: 5px;
+  width: 100%;
+  height: 12px;
+}
+progress::-webkit-progress-bar {
+  background-color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+progress::-webkit-progress-value {
+  background-color: #9090b7;
+  border-radius: 5px;
+}

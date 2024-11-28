@@ -7,7 +7,7 @@ const Home = () => {
 
   return (
     <div>
-      <div className="home-page-wrapper w-screen h-screen font-supernova-800 bg-supernova-750 p-4 gap-4 text-gray-200 flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
+      <div className="home-page-wrapper w-screen h-auto sm:h-auto md:h-auto lg:h-screen xl:h-screen font-supernova-800 bg-supernova-750 p-4 gap-4 text-gray-200 flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
         <SideNav onSelectOption={setSelectedOption} />
         <Main selectedOption={selectedOption} />
       </div>

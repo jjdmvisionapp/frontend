@@ -44,11 +44,10 @@ export default {
           800: "#18191a", // Almost black with subtle warmth
           850: "#131314", // Very deep black-gray
           900: "#0e0e0f", // Pure black with slight depth
-          accent: "#5E5E95",
         },
       },
       fontFamily: {
-        default: ["Raleway", "sans-serif"], // Use only Raleway
+        default: ["Raleway", "sans-serif"],
         logo: ["DynaPuff", "sans-serif"],
       },
     },

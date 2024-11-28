@@ -49,7 +49,7 @@ const SideNav: React.FC<SideNavProps> = ({ onSelectOption }) => {
 
         <div className="bottom">
           {/* Logout Item */}
-          <div className="logout flex flex-row justify-start items-end text-supernova-200 hover gap-2 p-2 rounded-md hover:bg-supernova-650 cursor-pointer">
+          <div className="logout flex flex-row justify-start items-end text-supernova-200 hover gap-2 p-2 mt-12 rounded-md hover:bg-supernova-650 cursor-pointer">
             <TbLogout2 className="text-red-500 text-2xl" />
             <Link to={"/"}>Logout</Link>
           </div>
