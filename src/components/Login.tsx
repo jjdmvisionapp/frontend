@@ -25,7 +25,7 @@ const Login = () => {
             <div className="form-title mb-2 text-white flex flex-row items-center">
               <h3 className="text-2xl font-bold">Login</h3>
               <div className="icon">
-                <IoIosPlanet className="text-5xl ml-2 absolute top-7" />
+                <IoIosPlanet className="icon-animation-v2 text-5xl ml-2 absolute top-7" />
               </div>
             </div>
             <form action="">
