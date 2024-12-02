@@ -2,6 +2,7 @@ import React from "react";
 import Dashboard from "./Dashboard";
 import ImageClassification from "./ImageClassification";
 import ChatBot from "./ChatBot";
+import Settings from "./Settings";
 
 type MainProps = {
   selectedOption: string;
@@ -16,6 +17,8 @@ const ContentDisplay: React.FC<MainProps> = ({ selectedOption }) => {
         return <ImageClassification />;
       case "ChatBot":
         return <ChatBot />;
+      case "Settings":
+        return <Settings />;
       default:
         return (
           <div className="flex items-center justify-center h-full">

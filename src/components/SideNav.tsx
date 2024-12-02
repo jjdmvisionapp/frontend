@@ -10,8 +10,8 @@ type SideNavProps = {
 };
 
 const SideNav: React.FC<SideNavProps> = ({ onSelectOption }) => {
-  const navItems = ["Dashboard", "Image Classification", "ChatBot"];
-  const navIcons = [FaHome, FaImage, FaRobot];
+  const navItems = ["Dashboard", "Image Classification", "ChatBot", "Settings"];
+  const navIcons = [FaHome, FaImage, FaRobot, FaCog];
 
   return (
     <div>
@@ -22,7 +22,7 @@ const SideNav: React.FC<SideNavProps> = ({ onSelectOption }) => {
         </div>
 
         <div className="features mt-4 flex flex-col gap-4 h-full">
-          <h3 className="text-md font-logo">Features</h3>
+          <h3 className="text-md font-subtitle">Features</h3>
 
           {/* Map over navItems and navIcons */}
           {navItems.map((item, index) => {
@@ -39,12 +39,6 @@ const SideNav: React.FC<SideNavProps> = ({ onSelectOption }) => {
               </div>
             );
           })}
-
-          {/* Settings Item */}
-          <div className="settings flex flex-row justify-start items-center text-supernova-200 gap-2 p-2 rounded-md hover:bg-supernova-650 cursor-pointer hover:text-default-200 ">
-            <FaCog className="text-default-400 text-2xl" />
-            Settings
-          </div>
         </div>
 
         <div className="bottom">

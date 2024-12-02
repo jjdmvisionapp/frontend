@@ -4,8 +4,8 @@ import { FaImage } from "react-icons/fa";
 
 const ImageClassification: React.FC = () => {
   return (
-    <div className="flex flex-row w-full h-full p-4">
-      <div className="basis-2/3 p-2 flex flex-col">
+    <div className="flex flex-row  flex-wrap w-full h-full p-4">
+      <div className="basis-2/3 flex-grow p-2 flex flex-col">
         <h3>Upload Image</h3>
         <div className="w-full h-full">
           <DragDrop />
@@ -14,7 +14,7 @@ const ImageClassification: React.FC = () => {
               <p>Supported Formats: JPEG, PNG</p>
             </div>
             <div className="right">
-              <p>Maximum Size: 25MB</p>
+              <p>Maximum Size: 10MB</p>
             </div>
           </div>
 
@@ -26,10 +26,10 @@ const ImageClassification: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="basis-1/3 p-2 flex flex-col mt-8">
+      <div className="basis-1/3 flex-grow p-2 flex flex-col mt-8">
         <div className="item  flex flex-row w-full h-[6rem]">
-          <div className="flex flex-col basis-[80%] ">
-            <div className="flex flex-row items-center gap-2 border-b-[1px] border-b-white p-2">
+          <div className="flex flex-col basis-full ">
+            <div className="flex flex-row items-center gap-x-4 border-b-[1px] border-b-white p-2">
               <FaImage />
               <div className="flex flex-col">
                 <h3>Image</h3>

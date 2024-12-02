@@ -13,7 +13,7 @@ const Dashboard: React.FC = () => {
               Objective
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
-            <p className="text-center mt-2 text-md text-gray-300">
+            <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Asperiores veritatis consequatur et, tenetur nobis vel harum
               doloremque facere dolorem nulla.
@@ -24,7 +24,7 @@ const Dashboard: React.FC = () => {
               Technologies
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
-            <p className="text-center mt-2 text-md text-gray-300">
+            <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Asperiores veritatis consequatur et, tenetur nobis vel harum
               doloremque facere dolorem nulla.
@@ -43,7 +43,7 @@ const Dashboard: React.FC = () => {
               Image Classification
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
-            <p className="text-center mt-2 text-md text-gray-300">
+            <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit.
               Asperiores veritatis consequatur et, tenetur nobis vel harum
               doloremque facere dolorem nulla.
@@ -54,7 +54,7 @@ const Dashboard: React.FC = () => {
               ChatBot - Nova
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
-            <p className="text-center mt-2 text-md text-gray-300">
+            <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem
               eligendi quidem repudiandae, illum blanditiis ab iste assumenda
               nesciunt natus qui.

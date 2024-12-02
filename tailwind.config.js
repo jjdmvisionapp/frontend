@@ -49,6 +49,7 @@ export default {
       fontFamily: {
         default: ["Raleway", "sans-serif"],
         logo: ["DynaPuff", "sans-serif"],
+        subtitle: ["Ubuntu, sans-serif"],
       },
     },
   },

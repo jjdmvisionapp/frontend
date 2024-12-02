@@ -11,7 +11,9 @@ const Main: React.FC<MainProps> = ({ selectedOption }) => {
       <div className="rounded-3xl w-full h-full bg-supernova-700 flex flex-col">
         {/* Top header */}
         <div className="top w-full h-16 flex flex-row p-4 border-b-2 border-b-default-500">
-          <div className="title font-semibold text-xl">{selectedOption}</div>
+          <div className="title font-semibold font-subtitle text-xl">
+            {selectedOption}
+          </div>
         </div>
 
         {/* Content section */}

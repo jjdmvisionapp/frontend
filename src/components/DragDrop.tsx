@@ -11,7 +11,7 @@ function DragDrop() {
 
   return (
     <div
-      className="upload-wrapper text-center min-h-72  h-2/3 w-full mt-2 bg-default-300 hover:bg-default-350 cursor-pointer border-default-400 hover:border-default-450 border-4 border-dashed flex justify-center items-center p-4"
+      className="upload-wrapper text-center min-h-72  h-2/3 w-full mt-2 bg-supernova-600 hover:bg-[#33363A] cursor-pointer border-supernova-650 hover:border-supernova-600 border-4 border-dashed flex justify-center items-center p-4"
       {...getRootProps()}
     >
       <input {...getInputProps()} />

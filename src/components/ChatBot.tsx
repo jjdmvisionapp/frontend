@@ -2,10 +2,10 @@ import React from "react";
 
 const ChatBot: React.FC = () => {
   return (
-    <div className="bottom w-full h-full flex flex-wrap md:flex-wrap-reverse">
-      <div className="left basis-4/5 bg-supernova-750 flex justify-center items-center">
-        <div className="w-full h-full ml-8 mr-8 p-4 flex flex-col items-start justify-between">
-          <div className="title text-center">ChatBot</div>
+    <div className="bottom w-full h-full flex">
+      <div className="left w-full bg-supernova-750 flex justify-center items-center">
+        <div className="w-full h-full ml-8 mr-8 p-4 flex flex-col items-start justify-between gap-4">
+          <div className="chat-log h-full min-h-48 w-full scroll-smooth"></div>
           <input
             type="text"
             placeholder="Type a prompt here"
@@ -13,7 +13,6 @@ const ChatBot: React.FC = () => {
           />
         </div>
       </div>
-      <div className="right basis-1/5 p-4">Tutorial</div>
     </div>
   );
 };
