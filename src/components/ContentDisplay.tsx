@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Dashboard from "./Dashboard";
 import ImageClassification from "./ImageClassification";
 import ChatBot from "./ChatBot";
@@ -9,8 +9,24 @@ type MainProps = {
 };
 
 const ContentDisplay: React.FC<MainProps> = ({ selectedOption }) => {
+  const [activeContent, setActiveContent] = useState<string>(selectedOption);
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  useEffect(() => {
+    if (selectedOption !== activeContent) {
+      setIsTransitioning(true);
+
+      const timeout = setTimeout(() => {
+        setActiveContent(selectedOption);
+        setIsTransitioning(false);
+      }, 500); // Matches the CSS transition duration
+
+      return () => clearTimeout(timeout);
+    }
+  }, [selectedOption, activeContent]);
+
   const renderContent = () => {
-    switch (selectedOption) {
+    switch (activeContent) {
       case "Dashboard":
         return <Dashboard />;
       case "Image Classification":
@@ -28,7 +44,17 @@ const ContentDisplay: React.FC<MainProps> = ({ selectedOption }) => {
     }
   };
 
-  return <div className="w-full h-full flex">{renderContent()}</div>;
+  return (
+    <div className="w-full h-full flex overflow-hidden relative">
+      <div
+        className={`content-container ${
+          isTransitioning ? "fade-out" : "fade-in"
+        }`}
+      >
+        {renderContent()}
+      </div>
+    </div>
+  );
 };
 
 export default ContentDisplay;
