@@ -17,8 +17,8 @@ const SideNav: React.FC<SideNavProps> = ({ onSelectOption }) => {
     <div>
       <div className="nav-left h-full w-full sm:w-full md:w-full lg:w-[16rem] xl:w-[16rem] p-4 rounded-lg flex flex-col bg-supernova-700">
         <div className="title font-logo flex flex-row gap-2 text-2xl justify-start items-center text-gray-200">
-          <IoIosPlanet className="text-5xl text-default-500" />
-          jjdm
+          <IoIosPlanet className="icon-animation-v3 text-5xl text-default-500" />
+          <h3>jjdm</h3>
         </div>
 
         <div className="features mt-4 flex flex-col gap-4 h-full">

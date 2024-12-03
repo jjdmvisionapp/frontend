@@ -5,8 +5,8 @@ const Settings = () => {
     <div className="flex flex-row flex-wrap justify-start items-start w-full h-full mr-36 ml-36 mt-2 p-8">
       <div className="w-full h-auto flex flex-row items-center justify-between ">
         <div className="photo basis-1/3">
-          <div className="pfp flex justify-center items-center w-32 h-32 rounded-full text-2xl font-subtitle bg-supernova-450">
-            <p>JLM</p>
+          <div className="p flex justify-center items-center w-32 h-32 rounded-full text-2xl font-subtitle bg-supernova-450">
+            <p>JS</p>
           </div>
         </div>
         <div className="container">

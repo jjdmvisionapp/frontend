@@ -241,14 +241,18 @@ progress::-webkit-progress-value {
   left: 250px;
   bottom: 0;
   position: absolute;
-  animation: MoveUpDown 2s ease-in-out infinite;
+  animation: MoveUpDown 3s ease-in-out infinite;
 }
 
 .icon-animation-v2 {
   left: 100px;
   bottom: 0;
   position: absolute;
-  animation: MoveUpDown 2s ease-in-out infinite;
+  animation: MoveUpDown 3s ease-in-out infinite;
+}
+
+.icon-animation-v3 {
+  animation: MoveUpDown 3s ease-in-out infinite;
 }
 
 @keyframes MoveUpDown {
