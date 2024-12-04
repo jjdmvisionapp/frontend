@@ -3,12 +3,17 @@ import Dashboard from "./Dashboard";
 import ImageClassification from "./ImageClassification";
 import ChatBot from "./ChatBot";
 import Settings from "./Settings";
+import { User } from "../types";
 
-type MainProps = {
+type ContentDisplayProps = {
   selectedOption: string;
+  user: User | null;
 };
 
-const ContentDisplay: React.FC<MainProps> = ({ selectedOption }) => {
+const ContentDisplay: React.FC<ContentDisplayProps> = ({
+  selectedOption,
+  user,
+}) => {
   const [activeContent, setActiveContent] = useState<string>(selectedOption);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
@@ -34,7 +39,7 @@ const ContentDisplay: React.FC<MainProps> = ({ selectedOption }) => {
       case "ChatBot":
         return <ChatBot />;
       case "Settings":
-        return <Settings />;
+        return <Settings user={user} />; // Pass user to Settings
       default:
         return (
           <div className="flex items-center justify-center h-full">
@@ -45,14 +50,15 @@ const ContentDisplay: React.FC<MainProps> = ({ selectedOption }) => {
   };
 
   return (
-    <div className="w-full h-full flex overflow-hidden relative">
-      <div
-        className={`content-container ${
-          isTransitioning ? "fade-out" : "fade-in"
-        }`}
-      >
-        {renderContent()}
-      </div>
+    <div
+      className="w-full h-full"
+      style={{
+        transition: "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
+        opacity: isTransitioning ? 0 : 1,
+        transform: isTransitioning ? "translateY(20px)" : "translateY(0)",
+      }}
+    >
+      {renderContent()}
     </div>
   );
 };

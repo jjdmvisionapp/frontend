@@ -43,8 +43,9 @@ body {
 
 .submit {
   display: inline-block;
+  color: #3b3b7e;
   transition: cubic-bezier(0.19, 1, 0.22, 1);
-  background: linear-gradient(to left, #f2f2f3 50%, #2e3032 50%) right; /* supernova.100 and 600 */
+  background: linear-gradient(to left, #f2f2f3 50%, #5e5e95 50%) right; /* supernova.100 and 600 */
   background-size: 200%;
   transition: 0.5s ease-out;
 }
@@ -263,26 +264,4 @@ progress::-webkit-progress-value {
   50% {
     transform: translateY(-5px);
   }
-}
-
-.content-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 0.25s ease, transform 0.3s ease;
-}
-
-.fade-out {
-  opacity: 0;
-  transform: translateY(-10%);
-}
-
-.fade-in {
-  opacity: 1;
-  transform: translateX(0);
 }

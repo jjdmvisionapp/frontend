@@ -14,7 +14,7 @@ const ImageClassification: React.FC = () => {
               <p>Supported Formats: JPEG, PNG</p>
             </div>
             <div className="right">
-              <p>Maximum Size: 10MB</p>
+              <p>Maximum Size: 5MB</p>
             </div>
           </div>
 
@@ -27,9 +27,9 @@ const ImageClassification: React.FC = () => {
         </div>
       </div>
       <div className="basis-1/3 flex-grow p-2 flex flex-col mt-8">
-        <div className="item  flex flex-row w-full h-[6rem]">
+        <div className="progress-item flex flex-row w-full h-[6rem]">
           <div className="flex flex-col basis-full ">
-            <div className="flex flex-row items-center gap-x-4 border-b-[1px] border-b-white p-2">
+            <div className="flex flex-row items-center gap-x-4 border-b-[1px] border-b-gray-400 p-2">
               <FaImage />
               <div className="flex flex-col">
                 <h3>Image</h3>
@@ -48,6 +48,9 @@ const ImageClassification: React.FC = () => {
               </progress>
             </div>
           </div>
+        </div>
+        <div className="result-item w-full h-auto border-b-[1px] border-gray-400 p-2 mt-4">
+          <p>The image is of a</p>
         </div>
       </div>
     </div>

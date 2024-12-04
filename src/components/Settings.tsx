@@ -1,30 +1,40 @@
 import React from "react";
+import { User } from "../types";
 
-const Settings = () => {
+type SettingsProps = {
+  user: User | null;
+};
+
+const Settings: React.FC<SettingsProps> = ({ user }) => {
   return (
-    <div className="flex flex-row flex-wrap justify-start items-start w-full h-full mr-36 ml-36 mt-2 p-8">
-      <div className="w-full h-auto flex flex-row items-center justify-between ">
-        <div className="photo basis-1/3">
-          <div className="p flex justify-center items-center w-32 h-32 rounded-full text-2xl font-subtitle bg-supernova-450">
-            <p>JS</p>
-          </div>
-        </div>
-        <div className="container">
-          {" "}
-          <h3 className="font-semibold font-subtitle text-xl">
-            Account Settings
-          </h3>
-          <div className="info basis-2/3 flex flex-col p-4 gap-x-12">
-            <div className="left flex gap-2 flex-row">
-              <p className=" border-b-2 border-supernova-400 p-2 flex-1">
-                Username
-              </p>
-              <p className="border-b-2 border-supernova-400 p-2 flex-1">
-                Email Address
+    <div className="container mt-2 p-8 w-full h-full">
+      {" "}
+      <h3 className="font-semibold font-subtitle text-xl">Account Settings</h3>
+      <div className="flex flex-row justify-center w-full h-[12rem]">
+        <div className="account w-full h-full flex flex-row  items-center justify-center">
+          <div className="photo basis-1/3 flex justify-center items-center ">
+            <div className="flex justify-center items-center w-32 h-32 rounded-full text-2xl font-subtitle bg-supernova-450">
+              <p>
+                {user && user.username ? user.username[0].toUpperCase() : "?"}
               </p>
             </div>
-            <div className="right flex gap-2 flex-col">
-              <p className="border-b-2 border-supernova-400 p-2">Password</p>
+          </div>
+          <div className="container">
+            {" "}
+            <div className="info basis-2/3 flex flex-col p-4 gap-x-12">
+              <div className="left flex gap-2 flex-row">
+                <p className=" border-b-2 border-supernova-400 p-2 flex-1">
+                  {user && user.username ? user.username : "No Username"}
+                </p>
+                <p className="border-b-2 border-supernova-400 p-2 flex-1">
+                  {user && user.email ? user.email : "No Email"}
+                </p>
+              </div>
+              <div className="right flex gap-2 flex-col">
+                <p className="border-b-2 border-supernova-400 p-2">
+                  {user && user.password ? user.password : "No Password"}
+                </p>
+              </div>
             </div>
           </div>
         </div>

@@ -10,13 +10,13 @@ const Dashboard: React.FC = () => {
         <div className="box-wrapper flex flex-row flex-wrap justify-center items-center ">
           <div className="basis-1/2 md:basis-1/2 lg:basis-1/2 xl:basis-1/3 h-full p-8 flex flex-col justify-center items-center hover:bg-supernova-650 transition ease-in 1s cursor-pointer rounded-lg">
             <h3 className="subtitle-responsive text-lg text-gray-300">
-              Objective
+              Objectives
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
             <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Asperiores veritatis consequatur et, tenetur nobis vel harum
-              doloremque facere dolorem nulla.
+              Our objective at JJDM is to provide a service for users to chat
+              with an AI Chatbot called Nova and identify images using our
+              classification tool!
             </p>
           </div>
           <div className="basis-1/2 md:basis-1/2 lg:basis-1/2 xl:basis-1/3  h-full p-6 flex flex-col justify-center items-center hover:bg-supernova-650 transition ease-in 1s cursor-pointer rounded-lg">
@@ -25,9 +25,8 @@ const Dashboard: React.FC = () => {
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
             <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Asperiores veritatis consequatur et, tenetur nobis vel harum
-              doloremque facere dolorem nulla.
+              We're using ResNet-152, for the image recognition tool, and
+              Flan-T5 Large from Hugging Face for our Chat Model!
             </p>
           </div>
         </div>
@@ -44,9 +43,9 @@ const Dashboard: React.FC = () => {
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
             <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-              Asperiores veritatis consequatur et, tenetur nobis vel harum
-              doloremque facere dolorem nulla.
+              To use our Image Classification tool, just upload a clear PNG or
+              JPEG image that's under 10MB, and the tool will recognise it and
+              return what it is!
             </p>
           </div>
           <div className="basis-1/2 md:basis-1/2 lg:basis-1/2 xl:basis-1/4  h-full p-6 flex flex-col justify-center items-center hover:bg-supernova-650 transition ease-in 1s cursor-pointer rounded-lg">
@@ -55,9 +54,8 @@ const Dashboard: React.FC = () => {
             </h3>
             <hr className="w-full border-gray-400 mt-2" />
             <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Autem
-              eligendi quidem repudiandae, illum blanditiis ab iste assumenda
-              nesciunt natus qui.
+              If you have any follow up queries or just want to interact with
+              the chatbot, just enter a prompt and the AI will respond!
             </p>
           </div>
         </div>

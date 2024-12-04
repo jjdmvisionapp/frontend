@@ -1,4 +1,3 @@
-import React from "react";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import { HashRouter, Routes, Route } from "react-router-dom";
@@ -9,7 +8,7 @@ const App = () => {
     <>
       <HashRouter>
         <Routes>
-          <Route path="/" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/home" element={<Home />} />
         </Routes>

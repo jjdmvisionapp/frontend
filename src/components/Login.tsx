@@ -4,12 +4,33 @@ import { Link } from "react-router-dom";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
 import { IoIosPlanet } from "react-icons/io";
+import httpClient from "../httpClient";
 
-const Login = () => {
+const Login: React.FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
+  };
+
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+
+  const logInUser = async () => {
+    console.log(email, password);
+
+    try {
+      const resp = await httpClient.post("//localhost:8080/login", {
+        email,
+        password,
+      });
+
+      window.location.href = "/home";
+    } catch (error: any) {
+      if (error.response.status === 401) {
+        alert("Invalid credentials");
+      }
+    }
   };
 
   return (
@@ -25,19 +46,27 @@ const Login = () => {
             <div className="form-title mb-2 text-white flex flex-row items-center">
               <h3 className="text-2xl font-bold">Login</h3>
               <div className="icon">
-                <IoIosPlanet className="icon-animation-v2 text-5xl ml-2 absolute top-7" />
+                <IoIosPlanet className="icon-animation-v2 text-5xl ml-2 absolute top-7 text-default-500" />
               </div>
             </div>
-            <form action="">
+            <form>
               <div className="input-wrap">
                 <br />
-                <input type="text" className="input-styling" required />
+                <input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className="input-styling"
+                  required
+                />
                 <span className="floating-placeholder">Email</span>
               </div>
 
               <div className="input-wrap">
                 <br />
                 <input
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   type={isPasswordVisible ? "text" : "password"}
                   className={`input-styling password-input ${
                     isPasswordVisible ? "visible" : ""
@@ -61,6 +90,7 @@ const Login = () => {
               <div className="button-wrap text-center mt-4">
                 <Link to={"/home"}>
                   <button
+                    onClick={() => logInUser()}
                     type="submit"
                     className="submit  bg-[#FFFDFF] p-4 w-36 rounded-full font-bold mb-4 mt-2 text-supernova-700"
                   >
@@ -89,7 +119,7 @@ const Login = () => {
                   to={"/signup"}
                   reloadDocument
                 >
-                  Signup
+                  <p className="text-default-400 inline">Signup</p>
                 </Link>
               </p>
             </div>
