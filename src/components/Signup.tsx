@@ -155,7 +155,7 @@ const Signup: React.FC = () => {
                 Already have an account?{" "}
                 <Link
                   className="font-semibold hover:underline"
-                  to={"/login"}
+                  to={"/"}
                   reloadDocument
                 >
                   <p className="text-default-400 inline">Login</p>

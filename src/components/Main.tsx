@@ -23,7 +23,7 @@ const Main: React.FC<MainProps> = ({ selectedOption, user }) => {
             </div>
             {user?.username || (
               <Link
-                to="/login"
+                to="/"
                 className="px-3 py-2 text-sm hover:bg-default-500 bg-default-450 cursor-pointer rounded-full font-semibold"
               >
                 Log In
