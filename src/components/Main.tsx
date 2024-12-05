@@ -13,7 +13,7 @@ const Main: React.FC<MainProps> = ({ selectedOption, user }) => {
     <div className="w-full h-full">
       <div className="rounded-3xl w-full h-full bg-supernova-700 flex flex-col">
         {/* Top header */}
-        <div className="top w-full h-16 flex flex-row justify-between p-4 border-b-2 border-b-default-500">
+        <div className="top w-full h-16 flex flex-row justify-between p-4 border-b-4 border-b-default-500 rounded-lg">
           <div className="title font-semibold font-subtitle text-xl">
             {/* displays selected feature as a title */}
             {selectedOption}
