@@ -15,10 +15,12 @@ const Main: React.FC<MainProps> = ({ selectedOption, user }) => {
         {/* Top header */}
         <div className="top w-full h-16 flex flex-row justify-between p-4 border-b-2 border-b-default-500">
           <div className="title font-semibold font-subtitle text-xl">
+            {/* displays selected feature as a title */}
             {selectedOption}
           </div>
           <div className="user flex flex-row justify-center items-center gap-2">
             <div className="profile h-8 w-8 bg-supernova-500 rounded-full flex justify-center items-center text-center">
+              {/* confirms if user is logged in and displays first character in their name to represent an initial in a profile picture, if no user is found then displays ? */}
               {user && user.username ? user.username[0].toUpperCase() : "?"}
             </div>
             {user?.username || (

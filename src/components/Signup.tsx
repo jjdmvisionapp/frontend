@@ -12,12 +12,14 @@ const Signup: React.FC = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
+  // setting state for signup details
   const [username, setUsername] = useState<string>("");
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>(""); // Added confirmPassword state
   const [errorMessage, setErrorMessage] = useState<string>(""); // For validation feedback
 
+  // confirms if passwords match
   const registerUser = async () => {
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match!");

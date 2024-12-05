@@ -6,12 +6,12 @@ import { IoIosPlanet } from "react-icons/io";
 
 type SideNavProps = {
   onSelectOption: (option: string) => void; // function to handle option selection
-  logoutUser: () => void;
+  logoutUser: () => void; // handles user logout
 };
 
 const SideNav: React.FC<SideNavProps> = ({ onSelectOption, logoutUser }) => {
-  const navItems = ["Dashboard", "Image Classification", "ChatBot", "Settings"];
-  const navIcons = [FaHome, FaImage, FaRobot, FaCog];
+  const navItems = ["Dashboard", "Image Classification", "ChatBot", "Settings"]; // array of string values for components
+  const navIcons = [FaHome, FaImage, FaRobot, FaCog]; // array of objects representing icons for feature listing
 
   return (
     <div>

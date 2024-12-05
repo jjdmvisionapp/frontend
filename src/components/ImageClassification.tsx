@@ -8,6 +8,7 @@ const ImageClassification: React.FC = () => {
       <div className="basis-2/3 flex-grow p-2 flex flex-col">
         <h3>Upload Image</h3>
         <div className="w-full h-full">
+          {/* Drag and Drop component imported for dragging and dropping images */}
           <DragDrop />
           <div className="caption flex flex-row flex-wrap justify-between mt-2 text-gray-300">
             <div className="left">
@@ -30,6 +31,7 @@ const ImageClassification: React.FC = () => {
         <div className="progress-item flex flex-row w-full h-[6rem]">
           <div className="flex flex-col basis-full ">
             <div className="flex flex-row items-center gap-x-4 border-b-[1px] border-b-gray-400 p-2">
+              {/* icon from react-icons */}
               <FaImage />
               <div className="flex flex-col">
                 <h3>Image</h3>

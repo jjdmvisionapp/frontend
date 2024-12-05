@@ -4,10 +4,12 @@ import io from "socket.io-client";
 const socket = io("http://localhost:5000/chat");
 
 const ChatBot: React.FC = () => {
+  // Stores state for user message and chatbot response
   const [userMessage, setUserMessage] = useState("");
   const [chatbotResponse, setChatbotResponse] = useState("");
 
   useEffect(() => {
+    // sets response as the message displayed
     socket.on("response", (data) => {
       setChatbotResponse(data.message);
     });
@@ -49,6 +51,7 @@ const ChatBot: React.FC = () => {
               placeholder="Type a prompt here.."
               className="prompt-input w-full bg-supernova-700 text-gray-400 rounded-md p-3 flex flex-row"
             />
+            {/* Sends message  */}
             <button
               onClick={handleSendMessage}
               className="p-2 rounded-md bg-default-550 hover:bg-default-500 text-md min-w-20"

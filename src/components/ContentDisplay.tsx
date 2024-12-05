@@ -5,6 +5,7 @@ import ChatBot from "./ChatBot";
 import Settings from "./Settings";
 import { User } from "../types";
 
+// passes selected option to content display to display the chosen component
 type ContentDisplayProps = {
   selectedOption: string;
   user: User | null;
@@ -14,9 +15,11 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({
   selectedOption,
   user,
 }) => {
+  // transition state handler for changing components
   const [activeContent, setActiveContent] = useState<string>(selectedOption);
   const [isTransitioning, setIsTransitioning] = useState(false);
 
+  // useEffect hook to handle transition timing and delay
   useEffect(() => {
     if (selectedOption !== activeContent) {
       setIsTransitioning(true);
@@ -30,6 +33,7 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({
     }
   }, [selectedOption, activeContent]);
 
+  // rendering content using switch statement
   const renderContent = () => {
     switch (activeContent) {
       case "Dashboard":
@@ -53,7 +57,7 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({
     <div
       className="w-full h-full"
       style={{
-        transition: "opacity 0.5s ease-in-out, transform 0.5s ease-in-out",
+        transition: "opacity 0.5s ease-in-out, transform 0.5s ease-in-out", // CSS styles for transition
         opacity: isTransitioning ? 0 : 1,
         transform: isTransitioning ? "translateY(20px)" : "translateY(0)",
       }}

@@ -6,6 +6,7 @@ import Home from "./components/Home";
 const App = () => {
   return (
     <>
+      {/* App Structure using routes to designate paths for different pages */}
       <HashRouter>
         <Routes>
           <Route path="/" element={<Login />} />

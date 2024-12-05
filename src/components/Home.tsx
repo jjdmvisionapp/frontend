@@ -5,7 +5,9 @@ import httpClient from "../httpClient.ts";
 import { User } from "../types";
 
 const Home = () => {
+  // state for choosing option from side navigation component
   const [selectedOption, setSelectedOption] = useState<string>("Dashboard");
+  // user auth
   const [user, setUser] = useState<User | null>(null);
 
   const logoutUser = async () => {
@@ -29,8 +31,10 @@ const Home = () => {
   return (
     <div>
       <div className="home-page-wrapper w-screen h-auto sm:h-auto md:h-auto lg:h-screen xl:h-screen font-supernova-800 bg-supernova-750 p-4 gap-4 text-gray-200 flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
-        <SideNav onSelectOption={setSelectedOption} logoutUser={logoutUser} />
-        <Main selectedOption={selectedOption} user={user} />{" "}
+        <SideNav onSelectOption={setSelectedOption} logoutUser={logoutUser} />{" "}
+        {/* passes props to component to set selected option and logout user function */}
+        <Main selectedOption={selectedOption} user={user} />
+        {/* passes props to component for selected option display and confirm user auth*/}
         {/* Pass the user here */}
       </div>
     </div>

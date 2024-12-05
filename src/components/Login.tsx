@@ -7,8 +7,10 @@ import { IoIosPlanet } from "react-icons/io";
 import httpClient from "../httpClient";
 
 const Login: React.FC = () => {
+  // Setting state for custom password visibility function
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
+  // function to toggle password visibility
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
@@ -67,7 +69,7 @@ const Login: React.FC = () => {
                 <input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  type={isPasswordVisible ? "text" : "password"}
+                  type={isPasswordVisible ? "text" : "password"} // changes if password has visibility
                   className={`input-styling password-input ${
                     isPasswordVisible ? "visible" : ""
                   }`}
@@ -75,7 +77,7 @@ const Login: React.FC = () => {
                 />
                 <button
                   type="button"
-                  onClick={togglePasswordVisibility}
+                  onClick={togglePasswordVisibility} // toggle for visibility
                   className="toggle-password"
                 >
                   {isPasswordVisible ? (
@@ -99,18 +101,6 @@ const Login: React.FC = () => {
                 </Link>
               </div>
             </form>
-
-            {/* <div className="text-slate-300 text-center ">
-              <p>
-                <Link
-                  className="font-semibold hover:underline"
-                  to={"/forgotpassword"}
-                  reloadDocument
-                >
-                  Forgot your password?{" "}
-                </Link>
-              </p>
-            </div> */}
             <div className="text-slate-300 text-center mt-1">
               <p>
                 Don't have an account?{" "}
