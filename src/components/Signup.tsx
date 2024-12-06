@@ -32,7 +32,7 @@ const Signup: React.FC = () => {
     }
 
     try {
-      const response = await httpClient.post("/api/v1/user/register", {
+      const response = await httpClient.post("/user/register", {
         username,
         email,
         password,
@@ -51,7 +51,7 @@ const Signup: React.FC = () => {
       actions.setEmail(savedEmail);
 
       // Post action: Navigate to home
-      navigate("/home");
+      window.location.href = "/home";
     } catch (error: any) {
       console.error("Signup failed:", error);
       if (error.response?.status === 400) {
@@ -166,6 +166,7 @@ const Signup: React.FC = () => {
                 <Link to={"/home"}>
                   <button
                     type="button"
+                    onClick={registerUser}
                     className="submit bg-gray-100 p-4 w-36 rounded-full font-bold mb-4 mt-2 text-supernova-700"
                   >
                     Sign Up

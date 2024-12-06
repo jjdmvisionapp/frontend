@@ -13,7 +13,7 @@ const Home = () => {
   const handleUserCheck = async () => {
     try {
       // Make the login request
-      const response = await httpClient.get("/@me");
+      const response = await httpClient.get("user/@me");
 
       // Extract user data from the response
       const { id: userId, username, email: userEmail } = response.data.user;
