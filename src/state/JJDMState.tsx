@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState, useEffect } from "react";
 
 // Define types for the state and actions
 interface State {
@@ -29,14 +29,37 @@ export const JJDMStateProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   // State values
-  const [loggedIn, setLoggedIn] = useState(false);
-  const [userId, setUserId] = useState("");
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
+  const [loggedIn, setLoggedIn] = useState<boolean>(() => {
+    return localStorage.getItem("loggedIn") === "true"; // Initialize from localStorage
+  });
+  const [userId, setUserId] = useState<string>(
+    () => localStorage.getItem("userId") || ""
+  );
+  const [username, setUsername] = useState<string>(
+    () => localStorage.getItem("username") || ""
+  );
+  const [email, setEmail] = useState<string>(
+    () => localStorage.getItem("email") || ""
+  );
 
   // Combine state and actions
   const state: State = { loggedIn, userId, username, email };
   const actions: Actions = { setLoggedIn, setUserId, setUsername, setEmail };
+
+  // Persist state to localStorage
+  useEffect(() => {
+    if (loggedIn) {
+      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("userId", userId);
+      localStorage.setItem("username", username);
+      localStorage.setItem("email", email);
+    } else {
+      localStorage.removeItem("loggedIn");
+      localStorage.removeItem("userId");
+      localStorage.removeItem("username");
+      localStorage.removeItem("email");
+    }
+  }, [loggedIn, userId, username, email]);
 
   return (
     <JJDMStateContext.Provider value={{ state, actions }}>

@@ -29,7 +29,28 @@ const Home = () => {
     }
   };
 
-  handleUserCheck();
+  const logoutUser = async () => {
+    try {
+      await httpClient.get("user/logout"); // Call the API to log out the user
+
+      // Clear user data in the state
+      actions.setLoggedIn(false);
+      actions.setUserId("");
+      actions.setUsername("");
+      actions.setEmail("");
+
+      // Redirect to the login page
+      window.location.href = "/";
+    } catch (err) {
+      console.error("Failed to log out:", err);
+      // Optionally handle errors, e.g., show a message or fallback to redirect
+      window.location.href = "/";
+    }
+  };
+
+  useEffect(() => {
+    handleUserCheck();
+  }, []);
 
   /* useEffect(() => {
     (async () => {
@@ -47,12 +68,7 @@ const Home = () => {
   return (
     <div>
       <div className="home-page-wrapper w-screen h-auto sm:h-auto md:h-auto lg:h-screen xl:h-screen font-supernova-800 bg-supernova-750 p-4 gap-4 text-gray-200 flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">
-        <SideNav
-          onSelectOption={setSelectedOption}
-          logoutUser={function (): void {
-            throw new Error("Function not implemented.");
-          }}
-        />{" "}
+        <SideNav onSelectOption={setSelectedOption} logoutUser={logoutUser} />{" "}
         {/* passes props to component to set selected option and logout user function */}
         <Main selectedOption={selectedOption} />
         {/* passes props to component for selected option display and confirm user auth*/}

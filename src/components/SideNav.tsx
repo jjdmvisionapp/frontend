@@ -3,6 +3,7 @@ import React from "react";
 import { FaHome, FaImage, FaRobot, FaCog } from "react-icons/fa";
 import { TbLogout2 } from "react-icons/tb";
 import { IoIosPlanet } from "react-icons/io";
+import httpClient from "../httpClient";
 
 type SideNavProps = {
   onSelectOption: (option: string) => void; // function to handle option selection
@@ -54,3 +55,6 @@ const SideNav: React.FC<SideNavProps> = ({ onSelectOption, logoutUser }) => {
 };
 
 export default SideNav;
+function useJJDMState(): { actions: any } {
+  throw new Error("Function not implemented.");
+}

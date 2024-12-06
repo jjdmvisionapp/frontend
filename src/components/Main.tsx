@@ -1,7 +1,5 @@
 import React from "react";
 import ContentDisplay from "./ContentDisplay";
-import { User } from "../types";
-import { Link } from "react-router-dom";
 import { useJJDMState } from "../state/JJDMState";
 
 type MainProps = {
@@ -10,6 +8,12 @@ type MainProps = {
 
 const Main: React.FC<MainProps> = ({ selectedOption }) => {
   const { state } = useJJDMState();
+
+  // Ensure that the username is not undefined or empty
+  const usernameInitial =
+    state.username && state.username.length > 0
+      ? state.username[0].toUpperCase()
+      : "?"; // Fallback to "?" if username is empty or undefined
 
   return (
     <div className="w-full h-full">
@@ -22,10 +26,11 @@ const Main: React.FC<MainProps> = ({ selectedOption }) => {
           </div>
           <div className="user flex flex-row justify-center items-center gap-2">
             <div className="profile h-8 w-8 bg-supernova-500 rounded-full flex justify-center items-center text-center">
-              {/* confirms if user is logged in and displays first character in their name to represent an initial in a profile picture, if no user is found then displays ? */}
-              {state.username[0].toUpperCase()}
+              {/* Displays username initial or "?" if username is undefined */}
+              {usernameInitial}
             </div>
-            {state.username}
+            {state.username || "Guest"}{" "}
+            {/* Fallback to 'Guest' if username is undefined */}
           </div>
         </div>
 
