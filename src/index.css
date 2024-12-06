@@ -265,3 +265,22 @@ progress::-webkit-progress-value {
     transform: translateY(-5px);
   }
 }
+
+/* In your global stylesheet (e.g., index.css or tailwind.css) */
+::-webkit-scrollbar {
+  width: 8px; /* Set scrollbar width */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7a7e9f; /* Supernova-600 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #4f4f77; /* Supernova-800 */
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-corner {
+  background-color: transparent;
+}
