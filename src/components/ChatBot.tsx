@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
 import httpClient from "../httpClient";
+import { useJJDMState } from "../state/JJDMState";
 
 const ChatBot: React.FC = () => {
   const [userMessage, setUserMessage] = useState("");
@@ -17,6 +18,7 @@ const ChatBot: React.FC = () => {
   const [socketConnected, setSocketConnected] = useState(false); // Track WebSocket connection
   const socketRef = useRef<any>(null); // Reference for the WebSocket instance
   const chatLogRef = useRef<HTMLDivElement | null>(null); // Reference to chat log container
+  const { state } = useJJDMState();
 
   // Fetch existing chat messages from the server
   useEffect(() => {
@@ -43,7 +45,7 @@ const ChatBot: React.FC = () => {
   // Connect to WebSocket after messages are loaded
   useEffect(() => {
     socketRef.current = io("ws://localhost:23432/chat", {
-      query: { user_id: 1 },
+      query: { user_id: parseInt(state.userId) },
     });
 
     socketRef.current.on("connect", () => {
@@ -98,7 +100,7 @@ const ChatBot: React.FC = () => {
       // Emit the 'send_message' event to the server
       socketRef.current?.emit("send_message", {
         message: userMessage,
-        from_user_id: 1,
+        from_user_id: parseInt(state.userId),
         to_user_id: -1,
       }); // Replace with actual user IDs
 
