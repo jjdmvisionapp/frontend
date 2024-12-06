@@ -5,19 +5,6 @@ import { Link, useNavigate } from "react-router-dom";
 import httpClient from "../httpClient";
 import { useJJDMState } from "../state/JJDMState";
 
-// Custom Hook for Form Input
-const useInput = (initialValue: string) => {
-  const [value, setValue] = useState(initialValue);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    // Log to debug the value at each keystroke
-    console.log("Input value changed: ", e.target.value);
-    setValue(e.target.value);
-  };
-
-  return { value, onChange: handleChange, setValue };
-};
-
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");

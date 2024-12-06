@@ -1,13 +1,10 @@
 import { useState, useEffect, useRef } from "react";
 import io from "socket.io-client";
 import axios from "axios";
-
-// Connect to the Flask-SocketIO server
-const socket = io("http://localhost:5000/chat");
+import httpClient from "../httpClient";
 
 const ChatBot: React.FC = () => {
   const [userMessage, setUserMessage] = useState("");
-  const [chatbotResponse, setChatbotResponse] = useState("");
   const [messages, setMessages] = useState<
     {
       message: string;
@@ -17,32 +14,44 @@ const ChatBot: React.FC = () => {
       timestamp: string;
     }[]
   >([]); // Store all messages
-
+  const [socketConnected, setSocketConnected] = useState(false); // Track WebSocket connection
+  const socketRef = useRef<any>(null); // Reference for the WebSocket instance
   const chatLogRef = useRef<HTMLDivElement | null>(null); // Reference to chat log container
 
+  // Fetch existing chat messages from the server
   useEffect(() => {
-    // Fetch existing chat messages when the component is mounted
     const fetchMessages = async () => {
       try {
-        const response = await axios.get("/chat/messages");
+        const response = await httpClient.get("/chat/messages");
+
         if (response.data.status === "success") {
-          setMessages(response.data.messages);
+          setMessages(
+            response.data.messages.map((msg: any) => ({
+              ...msg,
+              message_type: msg.type === "user" ? "user" : "chatbot",
+            }))
+          );
         }
       } catch (error) {
         console.error("Error fetching messages:", error);
       }
     };
 
-    fetchMessages(); // Fetch messages on load
+    fetchMessages();
+  }, []);
 
-    // Listen for 'response' event from the server
-    socket.on("response", (data) => {
-      setChatbotResponse(data.message);
+  // Connect to WebSocket after messages are loaded
+  useEffect(() => {
+    socketRef.current = io("ws://localhost:23432/chat", {
+      query: { user_id: 1 },
     });
 
-    // Listen for 'receive_message' event from the server
-    socket.on("receive_message", (message) => {
-      // Handle received message (display in chat log)
+    socketRef.current.on("connect", () => {
+      console.log("WebSocket connected");
+      setSocketConnected(true);
+    });
+
+    socketRef.current.on("receive_message", (message: any) => {
       setMessages((prevMessages) => [
         ...prevMessages,
         {
@@ -55,18 +64,22 @@ const ChatBot: React.FC = () => {
       ]);
     });
 
+    socketRef.current.on("disconnect", () => {
+      console.log("WebSocket disconnected");
+      setSocketConnected(false);
+    });
+
     return () => {
-      socket.off("response");
-      socket.off("receive_message"); // Clean up listeners
+      socketRef.current?.disconnect(); // Clean up WebSocket connection
     };
   }, []);
 
+  // Scroll to the bottom of the chat log when new messages are added
   useEffect(() => {
-    // Scroll to the bottom of the chat log whenever new messages are added
     if (chatLogRef.current) {
       chatLogRef.current.scrollTop = chatLogRef.current.scrollHeight;
     }
-  }, [messages]); // Scroll to the bottom when the messages state changes
+  }, [messages]);
 
   const handleSendMessage = () => {
     if (userMessage.trim()) {
@@ -83,22 +96,20 @@ const ChatBot: React.FC = () => {
       ]);
 
       // Emit the 'send_message' event to the server
-      socket.emit("send_message", {
+      socketRef.current?.emit("send_message", {
         message: userMessage,
         from_user_id: 1,
         to_user_id: -1,
       }); // Replace with actual user IDs
 
-      // Clear input field after sending
-      setUserMessage("");
+      setUserMessage(""); // Clear input field after sending
     }
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    // Check if Enter (key code 13) is pressed
     if (e.key === "Enter") {
-      e.preventDefault(); // Prevent default Enter behavior (like submitting a form)
-      handleSendMessage(); // Call the send message function
+      e.preventDefault(); // Prevent default Enter behavior
+      handleSendMessage();
     }
   };
 
@@ -107,7 +118,6 @@ const ChatBot: React.FC = () => {
     if (currentIndex === 0) return "mt-4"; // First message has normal margin
     const prevMessage = messages[currentIndex - 1];
     const currentMessage = messages[currentIndex];
-    // If the current message is from the same type as the previous one, reduce the margin
     return prevMessage.message_type === currentMessage.message_type
       ? "mt-2" // Smaller margin for consecutive messages of same type
       : "mt-4"; // Larger margin for alternating user/chatbot messages
@@ -118,10 +128,9 @@ const ChatBot: React.FC = () => {
       <div className="w-full bg-supernova-750 flex justify-center items-center">
         <div className="chat-container w-full h-full flex-grow ml-8 mr-8 p-4 flex flex-col items-start justify-between gap-4">
           <div
-            ref={chatLogRef} // Reference to the chat log container
+            ref={chatLogRef}
             className="chat-log w-full max-h-[32rem] overflow-y-auto flex flex-col mt-6 p-4"
           >
-            {/* Display all chat messages */}
             {messages.map((msg, index) => (
               <div
                 key={index}
@@ -140,7 +149,7 @@ const ChatBot: React.FC = () => {
               type="text"
               value={userMessage}
               onChange={(e) => setUserMessage(e.target.value)}
-              onKeyDown={handleKeyDown} // Listen for key press event
+              onKeyDown={handleKeyDown}
               placeholder="Type a prompt here.."
               className="prompt-input w-full bg-supernova-700 text-gray-400 rounded-md p-3 flex flex-row"
             />
