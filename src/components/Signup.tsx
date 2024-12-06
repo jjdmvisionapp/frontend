@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FaRegEyeSlash } from "react-icons/fa6";
 import { FaRegEye } from "react-icons/fa6";
 import { IoIosPlanet } from "react-icons/io";
 import httpClient from "../httpClient";
+import { JJDMStateProvider, useJJDMState } from "../state/JJDMState";
 
 const Signup: React.FC = () => {
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
@@ -19,25 +20,46 @@ const Signup: React.FC = () => {
   const [confirmPassword, setConfirmPassword] = useState<string>(""); // Added confirmPassword state
   const [errorMessage, setErrorMessage] = useState<string>(""); // For validation feedback
 
+  const { actions } = useJJDMState();
+  const navigate = useNavigate();
+
   // confirms if passwords match
-  const registerUser = async () => {
+  const registerUser = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent form submission reload
     if (password !== confirmPassword) {
       setErrorMessage("Passwords do not match!");
       return;
     }
 
     try {
-      const resp = await httpClient.post(
-        "//localhost:8080/api/v1/user/register",
-        {
-          email,
-          password,
-        }
-      );
-      window.location.href = "/home";
+      const response = await httpClient.post("/api/v1/user/register", {
+        username,
+        email,
+        password,
+      });
+
+      const {
+        id: userId,
+        username: savedUsername,
+        email: savedEmail,
+      } = response.data.user;
+
+      // Update global state
+      actions.setLoggedIn(true);
+      actions.setUserId(userId);
+      actions.setUsername(savedUsername);
+      actions.setEmail(savedEmail);
+
+      // Post action: Navigate to home
+      navigate("/home");
     } catch (error: any) {
-      if (error.response.status === 401) {
-        alert("Invalid credentials");
+      console.error("Signup failed:", error);
+      if (error.response?.status === 400) {
+        setErrorMessage("Invalid data provided. Please check your inputs.");
+      } else if (error.response?.status === 409) {
+        setErrorMessage("Email already exists. Please log in.");
+      } else {
+        setErrorMessage("Something went wrong. Please try again.");
       }
     }
   };
@@ -144,7 +166,6 @@ const Signup: React.FC = () => {
                 <Link to={"/home"}>
                   <button
                     type="button"
-                    onClick={() => registerUser()}
                     className="submit bg-gray-100 p-4 w-36 rounded-full font-bold mb-4 mt-2 text-supernova-700"
                   >
                     Sign Up

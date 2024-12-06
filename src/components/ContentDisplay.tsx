@@ -8,13 +8,9 @@ import { User } from "../types";
 // passes selected option to content display to display the chosen component
 type ContentDisplayProps = {
   selectedOption: string;
-  user: User | null;
 };
 
-const ContentDisplay: React.FC<ContentDisplayProps> = ({
-  selectedOption,
-  user,
-}) => {
+const ContentDisplay: React.FC<ContentDisplayProps> = ({ selectedOption }) => {
   // transition state handler for changing components
   const [activeContent, setActiveContent] = useState<string>(selectedOption);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -43,7 +39,7 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({
       case "ChatBot":
         return <ChatBot />;
       case "Settings":
-        return <Settings user={user} />; // Pass user to Settings
+        return <Settings />; // Pass user to Settings
       default:
         return (
           <div className="flex items-center justify-center h-full">

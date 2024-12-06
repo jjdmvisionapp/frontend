@@ -1,36 +1,40 @@
 import React, { useState } from "react";
-import { FaMicrochip } from "react-icons/fa6";
-import { Link } from "react-router-dom";
-import { FaRegEyeSlash } from "react-icons/fa6";
-import { FaRegEye } from "react-icons/fa6";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import { IoIosPlanet } from "react-icons/io";
+import { Link, useNavigate } from "react-router-dom"; // useNavigate for redirection
 import httpClient from "../httpClient";
+import { useJJDMState } from "../state/JJDMState";
 
 const Login: React.FC = () => {
-  // Setting state for custom password visibility function
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const { actions } = useJJDMState(); // Access context actions
+  const navigate = useNavigate(); // For navigation
 
-  // function to toggle password visibility
   const togglePasswordVisibility = () => {
     setIsPasswordVisible(!isPasswordVisible);
   };
 
-  const [email, setEmail] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-
-  const logInUser = async () => {
-    console.log(email, password);
-
+  const handleLogin = async (e: React.FormEvent) => {
+    e.preventDefault(); // Prevent form submission reload
     try {
-      const resp = await httpClient.post("//localhost:8080/login", {
-        email,
-        password,
-      });
+      const response = await httpClient.post("/login", { email, password });
+      const { id: userId, username, email: userEmail } = response.data.user;
 
-      window.location.href = "/home";
+      // Update global state on success
+      actions.setLoggedIn(true);
+      actions.setUserId(userId);
+      actions.setUsername(username);
+      actions.setEmail(userEmail);
+
+      // Post action: Navigate to home
+      navigate("/home");
     } catch (error: any) {
-      if (error.response.status === 401) {
+      if (error.response?.status === 401) {
         alert("Invalid credentials");
+      } else {
+        console.error("Login failed", error);
       }
     }
   };
@@ -51,7 +55,7 @@ const Login: React.FC = () => {
                 <IoIosPlanet className="icon-animation-v2 text-5xl ml-2 absolute top-7 text-default-500" />
               </div>
             </div>
-            <form>
+            <form onSubmit={handleLogin}>
               <div className="input-wrap">
                 <br />
                 <input
@@ -92,7 +96,6 @@ const Login: React.FC = () => {
               <div className="button-wrap text-center mt-4">
                 <Link to={"/home"}>
                   <button
-                    onClick={() => logInUser()}
                     type="submit"
                     className="submit  bg-[#FFFDFF] p-4 w-36 rounded-full font-bold mb-4 mt-2 text-supernova-700"
                   >
