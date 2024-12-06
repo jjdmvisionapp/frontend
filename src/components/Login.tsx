@@ -9,7 +9,7 @@ const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
-  const { actions } = useJJDMState(); // Access context actions
+  const { state, actions } = useJJDMState(); // Access context actions
   const navigate = useNavigate(); // For navigation
 
   const togglePasswordVisibility = () => {
@@ -19,8 +19,9 @@ const Login: React.FC = () => {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault(); // Prevent form submission reload
     try {
-      const response = await httpClient.post("/login", { email, password });
-      const { id: userId, username, email: userEmail } = response.data.user;
+      const response = await httpClient.post("user/login", { email, password });
+      console.log(response.data);
+      const { id: userId, username, email: userEmail } = response.data.session;
 
       // Update global state on success
       actions.setLoggedIn(true);
@@ -94,14 +95,12 @@ const Login: React.FC = () => {
               </div>
 
               <div className="button-wrap text-center mt-4">
-                <Link to={"/home"}>
-                  <button
-                    type="submit"
-                    className="submit  bg-[#FFFDFF] p-4 w-36 rounded-full font-bold mb-4 mt-2 text-supernova-700"
-                  >
-                    Login
-                  </button>
-                </Link>
+                <button
+                  type="submit"
+                  className="submit  bg-[#FFFDFF] p-4 w-36 rounded-full font-bold mb-4 mt-2 text-supernova-700"
+                >
+                  Login
+                </button>
               </div>
             </form>
             <div className="text-slate-300 text-center mt-1">
