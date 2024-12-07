@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import DragDrop from "./DragDrop";
 import { FaImage } from "react-icons/fa";
-import axios from "axios";
 import httpClient from "../httpClient";
 
 const ImageClassification: React.FC = () => {
