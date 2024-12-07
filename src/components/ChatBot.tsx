@@ -128,36 +128,37 @@ const ChatBot: React.FC = () => {
   return (
     <div className="bottom w-full h-full flex">
       <div className="w-full bg-supernova-750 flex justify-center items-center">
-        <div className="chat-container w-full h-full flex-grow ml-8 mr-8 p-4 flex flex-col items-start justify-between gap-4">
+        <div
+            className="chat-container w-full h-[calc(100vh-4rem)] max-h-[90vh] overflow-hidden flex flex-col items-start justify-between gap-4">
           <div
-            ref={chatLogRef}
-            className="chat-log w-full max-h-[32rem] overflow-y-auto flex flex-col mt-6 p-4"
+              ref={chatLogRef}
+              className="chat-log flex flex-col w-full overflow-y-auto p-4"
           >
             {messages.map((msg, index) => (
-              <div
-                key={index}
-                className={`${
-                  msg.message_type === "user"
-                    ? "user bg-default-450 self-end"
-                    : "chatbot bg-supernova-600 self-start"
-                } rounded-lg h-auto p-2 max-w-fit ${getMessageMargin(index)}`}
-              >
-                {msg.message}
-              </div>
+                <div
+                    key={index}
+                    className={`${
+                        msg.message_type === "user"
+                            ? "user bg-default-450 self-end text-right"
+                            : "chatbot bg-supernova-600 self-start text-left"
+                    } rounded-lg h-auto p-2 max-w-[75%] break-words ${getMessageMargin(index)}`}
+                >
+                  {msg.message}
+                </div>
             ))}
           </div>
           <div className="flex flex-row w-full gap-2">
             <input
-              type="text"
-              value={userMessage}
-              onChange={(e) => setUserMessage(e.target.value)}
-              onKeyDown={handleKeyDown}
-              placeholder="Type a prompt here.."
-              className="prompt-input w-full bg-supernova-700 text-gray-400 rounded-md p-3 flex flex-row"
+                type="text"
+                value={userMessage}
+                onChange={(e) => setUserMessage(e.target.value)}
+                onKeyDown={handleKeyDown}
+                placeholder="Type a prompt here.."
+                className="prompt-input w-full bg-supernova-700 text-gray-400 rounded-md p-3 flex flex-row"
             />
             <button
-              onClick={handleSendMessage}
-              className="p-2 rounded-md bg-default-550 hover:bg-default-500 text-md min-w-20"
+                onClick={handleSendMessage}
+                className="p-2 rounded-md bg-default-550 hover:bg-default-500 text-md min-w-20"
             >
               Send
             </button>
