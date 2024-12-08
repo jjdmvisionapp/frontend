@@ -8,47 +8,43 @@ import { useJJDMState } from "../state/JJDMState";
 const Login: React.FC = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
-  const [isPasswordVisible, setIsPasswordVisible] = useState(false); // Visibility state for password
-  const { actions } = useJJDMState(); // Access context actions
-  const navigate = useNavigate(); // Hook for navigation
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string>(""); // State for error messages
+  const { actions } = useJJDMState();
+  const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
-    setIsPasswordVisible((prev) => !prev); // Toggle password visibility
+    setIsPasswordVisible((prev) => !prev);
   };
 
   const handleLogin = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent default form submission
+    e.preventDefault();
+    setErrorMessage(""); // Clear previous errors
 
     try {
       const response = await httpClient.post("user/login", {
-        email, // Pass email state
-        password, // Pass password state
+        email,
+        password,
       });
 
       const { id: userId, username, email: userEmail } = response.data.session;
 
-      // Update global state on success
       actions.setLoggedIn(true);
       actions.setUserId(userId);
       actions.setUsername(username);
       actions.setEmail(userEmail);
 
-      // Navigate to the home page after successful login
       navigate("/home");
     } catch (error: any) {
-      handleError(error); // Handle login errors
+      handleError(error);
     }
   };
 
   const handleError = (error: any) => {
-    if (error.response?.status === 401) {
-      alert("Invalid credentials");
-    } else {
-      console.error("Login failed:", error);
-    }
+    error.response?.status === 401;
+    setErrorMessage("Invalid email or password. Please try again.");
+    console.error("Login failed:", error);
   };
-
-  // InputField Component to handle form inputs with label and other attributes
 
   return (
     <div>
@@ -82,7 +78,7 @@ const Login: React.FC = () => {
                 <input
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                  type={isPasswordVisible ? "text" : "password"} // changes if password has visibility
+                  type={isPasswordVisible ? "text" : "password"}
                   className={`input-styling password-input ${
                     isPasswordVisible ? "visible" : ""
                   }`}
@@ -90,7 +86,7 @@ const Login: React.FC = () => {
                 />
                 <button
                   type="button"
-                  onClick={togglePasswordVisibility} // toggle for visibility
+                  onClick={togglePasswordVisibility}
                   className="toggle-password"
                 >
                   {isPasswordVisible ? (
@@ -109,6 +105,9 @@ const Login: React.FC = () => {
                 >
                   Login
                 </button>
+                {errorMessage && (
+                  <p className="text-red-500 mt-2 text-sm">{errorMessage}</p>
+                )}
               </div>
             </form>
             <div className="text-slate-300 text-center mt-1">

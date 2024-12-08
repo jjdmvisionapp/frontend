@@ -44,7 +44,7 @@ const Dashboard: React.FC = () => {
             <hr className="w-full border-gray-400 mt-2" />
             <p className="text-center mt-2 text-sm  sm:text-sm md:text-sm lg:text-md xl:text-md text-gray-300">
               To use our Image Classification tool, just upload a clear PNG or
-              JPEG image that's under 10MB, and the tool will recognise it and
+              JPEG image that's under 5MB, and the tool will recognise it and
               return what it is!
             </p>
           </div>
