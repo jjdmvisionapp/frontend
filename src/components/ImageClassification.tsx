@@ -91,7 +91,7 @@ const ImageClassification: React.FC = () => {
             />
             <label
               htmlFor="manual-upload"
-              className="cursor-pointer p-2 bg-blue-500 text-white rounded shadow-md hover:bg-blue-600"
+              className="cursor-pointer p-2 bg-default-500 text-white rounded shadow-md hover:bg-default-550 transition ease-in 0.3s"
             >
               Choose File
             </label>
