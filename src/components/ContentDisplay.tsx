@@ -11,6 +11,10 @@ type ContentDisplayProps = {
 };
 
 const ContentDisplay: React.FC<ContentDisplayProps> = ({ selectedOption }) => {
+  const [classificationResult, setClassificationResult] = useState<
+    string | null
+  >(null);
+
   // transition state handler for changing components
   const [activeContent, setActiveContent] = useState<string>(selectedOption);
   const [isTransitioning, setIsTransitioning] = useState(false);
@@ -35,9 +39,13 @@ const ContentDisplay: React.FC<ContentDisplayProps> = ({ selectedOption }) => {
       case "Dashboard":
         return <Dashboard />;
       case "Image Classification":
-        return <ImageClassification />;
+        return (
+          <ImageClassification
+            setClassificationResult={setClassificationResult}
+          />
+        );
       case "ChatBot":
-        return <ChatBot />;
+        return <ChatBot classificationResult={classificationResult} />;
       case "Settings":
         return <Settings />; // Pass user to Settings
       default:

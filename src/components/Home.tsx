@@ -52,19 +52,6 @@ const Home = () => {
     handleUserCheck();
   }, []);
 
-  /* useEffect(() => {
-    (async () => {
-      try {
-        const resp = await httpClient.get(
-          "http:\\localhost:8080/api/v1/user/@me"
-        );
-        setUser(resp.data); // Set the user data from the API
-      } catch (error) {
-        console.log("Not authenticated");
-      }
-    })();
-  }, []); */
-
   return (
     <div>
       <div className="home-page-wrapper w-screen h-auto sm:h-auto md:h-auto lg:h-screen xl:h-screen font-supernova-800 bg-supernova-750 p-4 gap-4 text-gray-200 flex xl:flex-row lg:flex-row md:flex-col sm:flex-col flex-col">

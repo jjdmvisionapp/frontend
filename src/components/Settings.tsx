@@ -27,11 +27,7 @@ const Settings = () => {
                   {state.email}
                 </p>
               </div>
-              <div className="right flex gap-2 flex-col">
-                {/* <p className="border-b-2 border-supernova-400 p-2">
-                  {}
-                </p> */}
-              </div>
+              <div className="right flex gap-2 flex-col"></div>
             </div>
           </div>
         </div>

@@ -3,11 +3,24 @@ import DragDrop from "./DragDrop";
 import { FaImage } from "react-icons/fa";
 import httpClient from "../httpClient";
 
-const ImageClassification: React.FC = () => {
+interface ImageClassificationProps {
+  setClassificationResult: (result: string) => void;
+}
+
+const ImageClassification: React.FC<ImageClassificationProps> = ({
+  setClassificationResult,
+}) => {
+  const [imageInfo, setImageInfo] = useState<any>(null); // Declare imageInfo as a state variable
+
+  useEffect(() => {
+    if (imageInfo?.classified_as) {
+      setClassificationResult(imageInfo.classified_as); // Use imageInfo safely here
+    }
+  }, [imageInfo, setClassificationResult]); // imageInfo is now properly declared and used
+
   const [imgFile, setImgFile] = useState<string | null>(null); // Local URL or server URL
   const [progress, setProgress] = useState<number>(0);
   const [error, setError] = useState<string | null>(null);
-  const [imageInfo, setImageInfo] = useState<any>(null); // To store image info including classification
 
   const MAX_FILE_SIZE_MB = 5; // Maximum file size in MB
   const SUPPORTED_FORMATS = ["image/jpeg", "image/png"];
