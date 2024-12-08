@@ -90,7 +90,7 @@ const ImageClassification: React.FC = () => {
       if (uploadedImage.unique) {
         // If the image is unique, fetch the actual image file from the server using POST request
         const imageFileResponse = await httpClient.post("images/get-file", {
-          image_id: uploadedImage.id,  // Pass the image_id in the POST request body
+          image_id: uploadedImage.id,  // Panss the image_id in the POST request body
         }, {
           responseType: "blob",  // Expect the image to be returned as a blob
         });
